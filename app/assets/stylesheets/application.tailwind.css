@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer components {
-  input, textarea, .rounded-lg {
+  .rounded-lg {
     @apply dark:text-black;
+  }
+
+  [type=text], [type=checkbox], textarea, input[type=number] {
+    @apply dark:bg-slate-800;
   }
 }

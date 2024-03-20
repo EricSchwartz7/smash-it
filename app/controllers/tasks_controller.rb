@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_list, only: [ :new ]
 
   # GET /tasks or /tasks.json
   def index
@@ -12,7 +13,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = @list.tasks.new
   end
 
   # GET /tasks/1/edit
@@ -21,15 +22,14 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
-
+    @task ||= Task.new(task_params)
     respond_to do |format|
       if @task.save
-        format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
-        format.json { render :show, status: :created, location: @task }
+        format.html { redirect_to edit_list_path(@task.list), notice: "Task was successfully created." }
+        # format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        # format.turbo_stream { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +60,11 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task ||= Task.find(params[:id])
+    end
+
+    def set_list
+      @list ||= List.find(params[:list_id])
     end
 
     # Only allow a list of trusted parameters through.

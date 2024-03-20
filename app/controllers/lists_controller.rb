@@ -17,6 +17,7 @@ class ListsController < ApplicationController
 
   # GET /lists/1/edit
   def edit
+    @tasks = @list.tasks
   end
 
   # POST /lists or /lists.json
@@ -37,12 +38,14 @@ class ListsController < ApplicationController
   # PATCH/PUT /lists/1 or /lists/1.json
   def update
     respond_to do |format|
-      if @list.update(list_params)
-        format.html { redirect_to list_url(@list), notice: "List was successfully updated." }
-        format.json { render :show, status: :ok, location: @list }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
+      List.transaction do
+        if @list.update(list_params)
+          format.html { redirect_to edit_list_path, notice: "List was successfully updated." }
+          format.json { render :edit, status: :ok, location: @list }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @list.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -65,6 +68,6 @@ class ListsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def list_params
-      params.require(:list).permit(:name)
+      params.require(:list).permit(:name, tasks_attributes: [:id, :description, :is_complete])
     end
 end
