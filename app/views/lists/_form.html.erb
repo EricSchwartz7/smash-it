@@ -22,10 +22,12 @@
           <%= task_form.text_field :description %>
         </div>
       <% end %>
-      <%= turbo_frame_tag 'new-task' do %>
-        <div>
-          <%= link_to '+ Add Task', new_task_path(list_id: list.id) %>
-        </div>
+      <% if list.persisted? %>
+        <%= turbo_frame_tag 'new-task' do %>
+          <div>
+            <%= link_to '+ Add Task', new_task_path(list_id: list.id) %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
