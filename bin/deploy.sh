@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh -e
 
 echo "compiling assets..."
 bundle exec rake assets:precompile
