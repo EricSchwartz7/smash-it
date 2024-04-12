@@ -3,6 +3,10 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
+  <% if flash[:error].present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="error"><%= flash[:error] %></p>
+  <% end %>
+
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Smash It</h1>
     <%= link_to "New list", new_list_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
@@ -10,5 +14,9 @@
 
   <div id="lists" class="min-w-full mt-5">
     <%= render @lists %>
+  </div>
+
+  <div>
+    <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
   </div>
 </div>

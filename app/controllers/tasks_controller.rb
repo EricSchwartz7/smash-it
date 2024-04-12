@@ -1,12 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: %i[ show edit update destroy ]
-  before_action :set_list, only: [ :new ]
-
-  # GET /tasks or /tasks.json
-  def index
-    @tasks = Task.all
-  end
+  before_action :set_list, only: %i[ new ]
 
   # GET /tasks/1 or /tasks/1.json
   def show
@@ -66,10 +61,11 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task ||= Task.find(params[:id])
+      redirect_to(lists_path, flash: { error: "Access Denied" }) if !current_user.list_ids.include?(@task.list_id)
     end
 
     def set_list
-      @list ||= List.find(params[:list_id])
+      @list ||= current_user.lists.find(params[:list_id])
     end
 
     # Only allow a list of trusted parameters through.
