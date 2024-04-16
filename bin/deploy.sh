@@ -1,12 +1,15 @@
 #!/bin/sh -e
 
-echo "pulling latest from git"
+echo "Pulling latest from git..."
 git pull
 
-echo "installing gems"
+echo "Installing gems..."
 bundle install
 
-echo "compiling assets..."
+echo "Database migrations..."
+bundle exec rake db:migrate
+
+echo "Compiling assets..."
 bundle exec rake assets:precompile
 
 echo "Puma phased restarting..."
