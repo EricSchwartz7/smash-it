@@ -1,0 +1,9 @@
+.devise-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}

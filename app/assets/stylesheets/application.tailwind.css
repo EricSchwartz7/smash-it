@@ -7,7 +7,11 @@
     @apply dark:text-black;
   }
 
-  [type=text], [type=checkbox], textarea, input[type=number] {
+  [type=text], [type=checkbox], textarea, input[type=number], input[type=email] {
     @apply dark:bg-slate-800;
   }
+}
+
+input {
+  @apply dark:bg-slate-800;
 }
