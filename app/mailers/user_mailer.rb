@@ -1,9 +1,9 @@
 class UserMailer < ApplicationMailer
   default from: 'info@ricschwartz.com'
 
-  def welcome_email
+  def cat_email
     @user = params[:user]
-    @url  = 'https://ricschwartz.com/users/sign_in'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    @url  = 'https://ricschwartz.com'
+    mail(to: @user.email, subject: 'Herb and Du')
   end
 end
