@@ -12,5 +12,8 @@ bundle exec rake db:migrate RAILS_ENV=production
 echo "Compiling assets..."
 bundle exec rake assets:precompile
 
+echo "Updating cron jobs"
+whenever --update-crontab
+
 echo "Puma phased restarting..."
 bundle exec pumactl phased-restart
