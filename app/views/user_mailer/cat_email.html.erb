@@ -4,13 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Give us snackies plz</h1>
-    <p>
-      Your username is: <%= @user.email %>.<br>
-    </p>
-    <p>
-      <a href='<%= @url %>'>Click here for all the snackies</a>
-    </p>
+    <p><strong>Original prompt:</strong> <%= @prompt %></p>
+    <p><strong>Revised prompt:</strong> <%= @revised_prompt %></p>
+    <p><img src='<%= @image_url %>' /></p>
     <p>Meowwwwww</p>
   </body>
 </html>

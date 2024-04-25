@@ -3,7 +3,10 @@ class UserMailer < ApplicationMailer
 
   def cat_email
     @user = params[:user]
-    @url  = 'https://ricschwartz.com'
-    mail(to: @user.email, subject: 'Snackiessss')
+    @prompt = params[:prompt]
+    @revised_prompt = params[:revised_prompt]
+    @image_url = params[:image_url]
+
+    mail(to: @user.email, subject: 'AI Image of the Day')
   end
 end

@@ -13,8 +13,8 @@
 #   rake "some:great:rake:task"
 # end
 #
-every 4.hours do
-  runner "UserMailer.with(user: User.first).cat_email.deliver_now"
+every 1.day, at: '8:00 am' do
+  runner "User.last.send_ai_image_email"
 end
 
 # Learn more: http://github.com/javan/whenever
