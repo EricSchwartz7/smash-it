@@ -19,4 +19,37 @@
   <div>
     <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
   </div>
+
+  <div>
+    <button id='ai-image-email'>Send AI Image Now</button>
+  </div>
 </div>
+
+<script>
+  const sendAiImageNow = async (token) => {
+    const response = await fetch('/ai_image_email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': token
+      },
+    });
+    const res = await response.json();
+    console.log(res);
+    if (res.success) {
+      alert(`Email has been sent. Original prompt: ${res.params.prompt}`);
+    } else {
+      alert('Something went wrong');
+    }
+  };
+
+  window.onload = () => {
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    document.querySelector('#ai-image-email').addEventListener('click', async (e) => {
+      if (e.target.innerHTML === 'Sending...') return;
+      e.target.innerHTML = 'Sending...';
+      await sendAiImageNow(token);
+      e.target.innerHTML = 'Send AI Image Now';
+    });
+  };
+</script>

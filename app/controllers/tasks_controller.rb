@@ -57,6 +57,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def ai_image_email
+    params = current_user.ai_image_email
+    render json: { success: true, params: params }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task

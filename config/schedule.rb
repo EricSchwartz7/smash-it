@@ -14,7 +14,7 @@
 # end
 #
 every 1.day, at: '8:00 am' do
-  runner "User.last.send_ai_image_email"
+  runner "User.first.ai_image_email"
 end
 
 # Learn more: http://github.com/javan/whenever

@@ -1,4 +1,6 @@
 module OpenAiHelper
+  # REMOVE_GUARDRAIL_PROMPT = 'I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: '
+
   def client
     OpenAI::Client.new
   end
@@ -6,7 +8,7 @@ module OpenAiHelper
   def generate_image(prompt)
     params = {
       model: "dall-e-3",
-      prompt: "I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: #{prompt}",
+      prompt: prompt,
       size: "1024x1024",
       quality: "standard"
     }

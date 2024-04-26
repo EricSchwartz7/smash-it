@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include OpenAiHelper
+  extend OpenAiHelper
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -12,8 +12,8 @@ class User < ApplicationRecord
     self.lists.last.tasks.first.description
   end
 
-  def send_ai_image_email
-    res = OpenAiHelper.generate_image(prompt)
+  def ai_image_email
+    res = User.generate_image(prompt)
     puts res
     data = res['data'].last
     params = {
@@ -23,5 +23,6 @@ class User < ApplicationRecord
       revised_prompt: data['revised_prompt']
     }
     UserMailer.with(params).cat_email.deliver_later
+    params
   end
 end
