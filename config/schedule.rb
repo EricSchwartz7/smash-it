@@ -13,6 +13,8 @@
 #   rake "some:great:rake:task"
 # end
 #
+set :output, "/var/www/smash-it/cron_log.log"
+
 every 1.day, at: '8:00 am' do
   runner "User.first.ai_image_email"
 end
