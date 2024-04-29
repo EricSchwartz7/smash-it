@@ -24,7 +24,7 @@ class User < ApplicationRecord
       revised_prompt: data['revised_prompt']
     }
     email_res = UserMailer.with(params).cat_email.deliver_later
-    puts email_res
+    puts email_res.inspect
     params
   end
 
