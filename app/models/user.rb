@@ -23,7 +23,7 @@ class User < ApplicationRecord
       image_url: data['url'],
       revised_prompt: data['revised_prompt']
     }
-    email_res = UserMailer.with(params).cat_email.deliver_later
+    email_res = UserMailer.with(params).cat_email.deliver_now
     puts email_res.inspect
     params
   end
@@ -33,6 +33,6 @@ class User < ApplicationRecord
       user: self,
       prompt: prompt
     }
-    UserMailer.with(params).first_email.deliver_later
+    UserMailer.with(params).first_email.deliver_now
   end
 end
