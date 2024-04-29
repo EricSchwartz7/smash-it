@@ -9,4 +9,11 @@ class UserMailer < ApplicationMailer
 
     mail(to: @user.email, subject: 'AI Image of the Day')
   end
+
+  def first_email
+    @user = params[:user]
+    @prompt = params[:prompt]
+
+    mail(to: @user.email, subject: 'Image is processing...')
+  end
 end

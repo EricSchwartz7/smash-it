@@ -13,6 +13,7 @@ class User < ApplicationRecord
   end
 
   def ai_image_email
+    first_email
     res = User.generate_image(prompt)
     puts res
     data = res['data'].last
@@ -22,7 +23,16 @@ class User < ApplicationRecord
       image_url: data['url'],
       revised_prompt: data['revised_prompt']
     }
-    UserMailer.with(params).cat_email.deliver_later
+    email_res = UserMailer.with(params).cat_email.deliver_later
+    puts email_res
     params
+  end
+
+  def first_email
+    params = {
+      user: self,
+      prompt: prompt
+    }
+    UserMailer.with(params).first_email.deliver_later
   end
 end
