@@ -13,7 +13,7 @@ class User < ApplicationRecord
   end
 
   def ai_image_email
-    first_email
+    # first_email
     res = User.generate_image(prompt)
     puts res
     data = res['data'].last
