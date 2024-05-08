@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
     @revised_prompt = params[:revised_prompt]
     @image_url = params[:image_url]
 
-    mail(to: @user.email, subject: 'AI Image of the Day')
+    mail(to: [@user.email 'shinhey413@gmail.com'], subject: 'AI Image of the Day')
   end
 
   def first_email
