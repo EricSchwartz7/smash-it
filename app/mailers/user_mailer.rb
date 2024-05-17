@@ -3,6 +3,7 @@ class UserMailer < ApplicationMailer
 
   def cat_email
     @user = params[:user]
+    @initial_prompt = params[:initial_prompt]
     @prompt = params[:prompt]
     @revised_prompt = params[:revised_prompt]
     @image_url = params[:image_url]

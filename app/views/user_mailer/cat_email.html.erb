@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>Meowwwwww</p>
     <p><img src='<%= @image_url %>' /></p>
-    <p><strong>Original prompt:</strong> <%= @prompt %></p>
-    <p><strong>Revised prompt:</strong> <%= @revised_prompt %></p>
+    <p><strong>Initial prompt:</strong> <%= @initial_prompt %></p>
+    <p><strong>GPT-4 generated prompt:</strong> <%= @prompt %></p>
+    <p><strong>Dalli-3 revised prompt:</strong> <%= @revised_prompt %></p>
   </body>
 </html>

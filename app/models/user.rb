@@ -8,23 +8,25 @@ class User < ApplicationRecord
 
   has_many :lists
 
-  def prompt
+  def stored_prompt
     self.lists.last.tasks.first.description
   end
 
   def ai_image_email
     # first_email
-    res = User.generate_image(prompt)
-    puts res
-    data = res['data'].last
+    res = User.generate_image
+    puts "\n generated image res: #{res} \n"
+    # data = res['data'].last
     params = {
       user: self,
-      prompt: prompt,
-      image_url: data['url'],
-      revised_prompt: data['revised_prompt']
+      initial_prompt: OpenAiHelper::ASK_FOR_PROMPT,
+      prompt: res[:gpt_prompt],
+      image_url: res[:url],
+      revised_prompt: res[:revised_prompt]
     }
     email_res = UserMailer.with(params).cat_email.deliver_now
-    puts email_res.inspect
+    # puts email_res.inspect
+    puts "\n email sent. \n"
     params
   end
 

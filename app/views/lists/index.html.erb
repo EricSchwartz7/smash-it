@@ -37,7 +37,7 @@
     const res = await response.json();
     console.log(res);
     if (res.success) {
-      alert(`Email has been sent. Original prompt: ${res.params.prompt}`);
+      alert(`Email has been sent. Prompt sent to Dalli-3: ${res.params.prompt}`);
     } else {
       alert('Something went wrong');
     }
