@@ -6,8 +6,8 @@ module OpenAiHelper
     OpenAI::Client.new
   end
 
-  def generate_image(prompt = nil)
-    prompt ||= ask_for_prompt
+  def generate_image(user_prompt)
+    prompt = ask_for_prompt(user_prompt)
     params = {
       model: "dall-e-3",
       prompt: prompt,
@@ -19,15 +19,16 @@ module OpenAiHelper
     data = response.dig("data").first
     {
       url: data['url'],
+      initial_prompt: user_prompt,
       revised_prompt: data['revised_prompt'],
       gpt_prompt: prompt
     }
   end
 
-  def ask_for_prompt
+  def ask_for_prompt(user_prompt)
     params = {
       model: "gpt-4-turbo",
-      messages: [{ role: "user", content: ASK_FOR_PROMPT}],
+      messages: [{ role: "user", content: user_prompt}],
       temperature: 1.3
     }
     puts "\n asking for prompt..."
