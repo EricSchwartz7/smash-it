@@ -19,4 +19,9 @@ set :output, "/var/www/smash-it/cron_log.log"
 #   runner "User.first.ai_image_email"
 # end
 
+## Check and update DNS record every hour
+every 1.hour do
+  rake "dns:update"
+end
+
 # Learn more: http://github.com/javan/whenever
