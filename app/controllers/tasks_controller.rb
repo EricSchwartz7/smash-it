@@ -58,8 +58,9 @@ class TasksController < ApplicationController
   end
 
   def ai_image_email
-    params = current_user.ai_image_email
-    render json: { success: true, params: params }
+    models = params[:models]
+    results = current_user.ai_image_email(models)
+    render json: { success: true, params: { models: models, results: results } }
   end
 
   private

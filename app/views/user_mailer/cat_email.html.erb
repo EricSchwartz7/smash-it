@@ -4,9 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p><img src='<%= @image_url %>' /></p>
-    <p><strong>Initial prompt:</strong> <%= @initial_prompt %></p>
-    <p><strong>GPT-4 generated prompt:</strong> <%= @prompt %></p>
-    <p><strong>Dalli-3 revised prompt:</strong> <%= @revised_prompt %></p>
+    <% @results.each do |result| %>
+      <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
+        <h2 style="color: #333;">Generated with <%= result[:model].upcase %></h2>
+        <p><img src='<%= result[:image_url] %>' style="max-width: 100%;" /></p>
+        <p><strong>Initial prompt:</strong> <%= result[:initial_prompt] %></p>
+        <p><strong>GPT Image 1 generated prompt:</strong> <%= result[:prompt] %></p>
+        <p><strong>Revised prompt:</strong> <%= result[:revised_prompt] %></p>
+      </div>
+    <% end %>
   </body>
 </html>

@@ -1,7 +1,13 @@
-Initial prompt: <%= @initial_prompt %>
+<% @results.each do |result| %>
+Generated with <%= result[:model].upcase %>:
 
-GPT-4 prompt: <%= @prompt %>
+Initial prompt: <%= result[:initial_prompt] %>
 
-Dalli-3 revised prompt: <%= @revised_prompt %>
+GPT Image 1 generated prompt: <%= result[:prompt] %>
 
-<%= @image_url %>
+Revised prompt: <%= result[:revised_prompt] %>
+
+Image URL: <%= result[:image_url] %>
+
+----------------------------------------
+<% end %>
