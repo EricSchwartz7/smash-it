@@ -74,3 +74,5 @@ gem "devise", "~> 4.9"
 gem "whenever", require: false
 
 gem "ruby-openai"
+
+gem "google-cloud-ai_platform"
