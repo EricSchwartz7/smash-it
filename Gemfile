@@ -76,3 +76,5 @@ gem "whenever", require: false
 gem "ruby-openai"
 
 gem "google-cloud-ai_platform"
+
+gem "googleauth"

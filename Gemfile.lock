@@ -396,6 +396,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   google-cloud-ai_platform
+  googleauth
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
