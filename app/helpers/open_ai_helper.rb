@@ -38,19 +38,14 @@ module OpenAiHelper
 
     response = http.request(req)
     response_body = JSON.parse(response.body)
-    # puts JSON.pretty_generate(JSON.parse(response.body))
-    #
-    File.open("output.jpg", "wb") do |f|
-      f.write(Base64.decode64(response_body["predictions"].first["bytesBase64Encoded"]))
-    end
 
-    # {
-    #   url: data["image"]&.string_value || data["image_url"]&.string_value,
-    #   initial_prompt: user_prompt,
-    #   revised_prompt: user_prompt, # Imagen doesn't provide revised prompts
-    #   gpt_prompt: user_prompt,
-    #   model: model
-    # }
+    {
+      base64_image_data: response_body["predictions"].first["bytesBase64Encoded"],
+      initial_prompt: user_prompt,
+      revised_prompt: user_prompt, # Imagen doesn't provide revised prompts
+      # gpt_prompt: user_prompt,
+      model: model
+    }
   end
 
   def generate_image(user_prompt, model = "dall-e-3")
@@ -73,7 +68,7 @@ module OpenAiHelper
         url: data['url'],
         initial_prompt: user_prompt,
         revised_prompt: data['revised_prompt'],
-        gpt_prompt: prompt,
+        # gpt_prompt: prompt,
         model: model
       }
     end

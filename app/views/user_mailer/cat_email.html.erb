@@ -7,9 +7,13 @@
     <% @results.each do |result| %>
       <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #eee;">
         <h2 style="color: #333;">Generated with <%= result[:model].upcase %></h2>
-        <p><img src='<%= result[:image_url] %>' style="max-width: 100%;" /></p>
+        <% if result[:inline_attachment_filename] %>
+          <p><%= image_tag attachments[result[:inline_attachment_filename]].url, style: "max-width: 100%;" %></p>
+        <% elsif result[:image_url] %>
+          <p><img src='<%= result[:image_url] %>' style="max-width: 100%;" /></p>
+        <% end %>
         <p><strong>Initial prompt:</strong> <%= result[:initial_prompt] %></p>
-        <p><strong>GPT Image 1 generated prompt:</strong> <%= result[:prompt] %></p>
+        <%# <p><strong>GPT Image 1 generated prompt:</strong> <%= result[:prompt] %></p> %>
         <p><strong>Revised prompt:</strong> <%= result[:revised_prompt] %></p>
       </div>
     <% end %>

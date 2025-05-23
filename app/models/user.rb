@@ -20,8 +20,9 @@ class User < ApplicationRecord
       results << {
         user: self,
         initial_prompt: res[:initial_prompt],
-        prompt: res[:gpt_prompt],
+        # prompt: res[:gpt_prompt],
         image_url: res[:url],
+        base64_image_data: res[:base64_image_data],
         revised_prompt: res[:revised_prompt],
         model: res[:model]
       }
