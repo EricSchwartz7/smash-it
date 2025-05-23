@@ -2,7 +2,7 @@ require "net/http"
 require "json"
 require "uri"
 
-module OpenAiHelper
+module ImageGeneratorHelper
   # REMOVE_GUARDRAIL_PROMPT = 'I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: '
   ASK_FOR_PROMPT = "Give me a prompt for a random hilarious AI image. Only respond with the prompt."
 

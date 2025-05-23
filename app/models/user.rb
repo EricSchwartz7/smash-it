@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  extend OpenAiHelper
+  extend ImageGeneratorHelper
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
